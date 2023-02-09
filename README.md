@@ -3,7 +3,7 @@ Study by Bernadeta Dadonaite and Jesse Bloom.
 
 Measures functional effects of mutations and escape from antibody 12-19 isolated by David D. Ho group.
 
-For documentation of the analysis, see [https://dms-vep.github.io/SARS-CoV-2_BA.1_spike_DMS_12-19/](https://dms-vep.github.io/SARS-CoV-2_BA.1_spike_DMS_12-19/).
+For documentation of the analysis, see [https://dms-vep.github.io/SARS-CoV-2_Omicron_BA.1_spike_DMS_12-19/](https://dms-vep.github.io/SARS-CoV-2_Omicron_BA.1_spike_DMS_12-19/).
 
 ## Organization of this repo
 
