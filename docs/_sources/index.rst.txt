@@ -22,9 +22,6 @@ details, using dropdowns, etc.
 .. toctree::
    :maxdepth: 1
 
-   analyze_pacbio_ccs
-   build_pacbio_consensus
-   build_codon_variants
    analyze_variant_counts
    analyze_func_scores
    fit_globalepistasis

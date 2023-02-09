@@ -20,17 +20,25 @@ year: 2022
 authors: Bernadeta Dadonaite and Jesse Bloom
 
 # ----------------------------------------------------------------------------
-# Parameters for analysis
+# Parameters related to building the codon variants
 # ----------------------------------------------------------------------------
-# Parameters for building PacBio CCS consensuses
-max_ccs_error_rate: 1.0e-4  # only keep CCS if gene/barcode error rate <= this
-consensus_params:  # parameters for building PacBio consensus sequences
-  max_sub_diffs: null
-  max_indel_diffs: null
-  max_minor_sub_frac: 0.2
-  max_minor_indel_frac: 0.2
-  min_support: 3
 
+# There are two ways you can get the codon variants: download a pre-built codon
+# variant table, or build them from PacBio CCSs yourself. If you are using
+# pre-built ones, then specify the links to URLs giving the codon variants,
+# gene sequence, and protein sequence for the pre-built table under `prebuilt_variants`.
+# Otherwise, specify the other variables. If `prebuilt_variants` is specified, all
+# other variables in this section are ignored (and do not need to be specified at all).
+
+# If using pre-built variants specify URL for pre-built codon-variant table
+# and gene (codon) sequence. Here we use the tables from:
+# https://github.com/dms-vep/SARS-CoV-2_Omicron_BA.1_spike_DMS_mAbs
+prebuilt_variants: https://raw.githubusercontent.com/dms-vep/SARS-CoV-2_Omicron_BA.1_spike_DMS_mAbs/main/results/variants/codon_variants.csv
+prebuilt_geneseq: https://raw.githubusercontent.com/dms-vep/SARS-CoV-2_Omicron_BA.1_spike_DMS_mAbs/main/results/gene_sequence/codon.fasta
+
+# ----------------------------------------------------------------------------
+# Parameters for analyses downstream of building the codon variants
+# ----------------------------------------------------------------------------
 # Parameters for processing Illumina barcodes
 illumina_barcode_parser_params:
   upstream: AACTCCACTAGGAACATTTCTCTCTCGAATCTAGA
@@ -84,21 +92,8 @@ muteffects_plot_kwargs:
       max: 25
 
 # ----------------------------------------------------------------------------
-# Input data to dms-vep-pipeline
+# Input data to dms-vep-pipeline downstream of building codon variants
 # ----------------------------------------------------------------------------
-# PacBio sequencing
-pacbio_runs: data/PacBio_runs.csv  # PacBio sequencing data
-pacbio_amplicon: data/PacBio_amplicon.gb  # Genbank file with PacBio amplicon
-pacbio_amplicon_specs: data/PacBio_feature_parse_specs.yaml  # alignparse feature parsing
-variant_tags:  # variant tags in PacBio amplicon, or "null" if no tags
-  variant_tag5:
-    variant_1: G
-    variant_2: C
-    wildtype: A
-  variant_tag3:
-    variant_1: G
-    variant_2: C
-    wildtype: A
 
 # Map sequential 1, 2, numbering of gene in PacBio amplicon to the desired
 # final reference numbering scheme. Unlike in the `dms-vep-pipeline`
