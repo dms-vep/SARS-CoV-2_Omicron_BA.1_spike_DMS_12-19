@@ -37,6 +37,16 @@ prebuilt_variants: https://raw.githubusercontent.com/dms-vep/SARS-CoV-2_Omicron_
 prebuilt_geneseq: https://raw.githubusercontent.com/dms-vep/SARS-CoV-2_Omicron_BA.1_spike_DMS_mAbs/main/results/gene_sequence/codon.fasta
 
 # ----------------------------------------------------------------------------
+# Parameters related to computing functional scores
+# ----------------------------------------------------------------------------
+
+# If you want to use prebuilt functional scores just taken from another repo, then
+# set the `prebuilt_muteffects` variable below to the URL for pre-built effects of
+# mutations on the observed phenotype. In that case, all other variables specified in this
+# section will be ignored and can be deleted.
+prebuilt_muteffects: https://raw.githubusercontent.com/dms-vep/SARS-CoV-2_Omicron_BA.1_spike_DMS_mAbs/main/results/muteffects_functional/muteffects_observed.csv
+
+# ----------------------------------------------------------------------------
 # Parameters for analyses downstream of building the codon variants
 # ----------------------------------------------------------------------------
 # Parameters for processing Illumina barcodes
@@ -62,34 +72,6 @@ prob_escape_min_no_antibody_counts: 20
 prob_escape_min_no_antibody_frac: 0.000001  # make smaller for large libraries, say 0.1 / (library size)
 # when averaging antibody escape values, take the "median" or "mean"?
 escape_avg_method: median
-
-# Parameters for functional scores and global epistasis analysis
-func_scores_pseudocount: 0.5  # pseudocount when computing functional scores
-func_scores_min_wt_count: 1000  # require this many wildtype counts or error
-func_scores_min_wt_frac:  0.001  # require this fraction of all counts for wildtype or error
-# Only fit global epistasis models for variants with at least this many
-# pre-selection counts and this fraction of total pre-selection counts
-func_scores_min_preselection_counts: 20
-func_scores_min_preselection_frac: 0.000001  # make smaller for large libraries, say ~0.1 / (library size)
-# when fitting global epistasis models, put this floor on functional scores. "null" or not specifying
-# parameter means no floor.
-func_scores_floor: null
-# when averaging mutation effects on viral entry, take the "median" or "mean"?
-muteffects_avg_method: median
-# keyword arguments to `polyclonal.plot.lineplot_and_heatmap` for plotting functional effects
-muteffects_plot_kwargs:
-  addtl_slider_stats:
-    times_seen: 3
-  heatmap_max_at_least: 1
-  heatmap_min_at_least: -1
-  init_floor_at_zero: False
-  slider_binding_range_kwargs:
-    n_libraries:
-      step: 1
-    times_seen:
-      step: 1
-      min: 1
-      max: 25
 
 # ----------------------------------------------------------------------------
 # Input data to dms-vep-pipeline downstream of building codon variants
